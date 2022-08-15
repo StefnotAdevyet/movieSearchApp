@@ -14,6 +14,10 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchTable: UITableView!
     
     
+    var movie: [Movie] = []
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTable.delegate = self
