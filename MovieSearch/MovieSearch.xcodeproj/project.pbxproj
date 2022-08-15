@@ -18,6 +18,7 @@
 		8BFB99D328AAE6C30096D289 /* MovieSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB99D228AAE6C30096D289 /* MovieSearchUITests.swift */; };
 		8BFB99D528AAE6C30096D289 /* MovieSearchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB99D428AAE6C30096D289 /* MovieSearchUITestsLaunchTests.swift */; };
 		8BFB99E628AAF8FC0096D289 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB99E528AAF8FC0096D289 /* Model.swift */; };
+		8BFB99E828AAF9750096D289 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB99E728AAF9750096D289 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		8BFB99D228AAE6C30096D289 /* MovieSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchUITests.swift; sourceTree = "<group>"; };
 		8BFB99D428AAE6C30096D289 /* MovieSearchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8BFB99E528AAF8FC0096D289 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		8BFB99E728AAF9750096D289 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 		8BFB99E428AAEDAD0096D289 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8BFB99E728AAF9750096D289 /* Network.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			files = (
 				8BFB99E628AAF8FC0096D289 /* Model.swift in Sources */,
 				8BFB99B328AAE6C20096D289 /* SearchViewController.swift in Sources */,
+				8BFB99E828AAF9750096D289 /* Network.swift in Sources */,
 				8BFB99AF28AAE6C20096D289 /* AppDelegate.swift in Sources */,
 				8BFB99B928AAE6C20096D289 /* MovieSearch.xcdatamodeld in Sources */,
 				8BFB99B128AAE6C20096D289 /* SceneDelegate.swift in Sources */,

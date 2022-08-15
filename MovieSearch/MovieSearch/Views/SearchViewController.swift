@@ -14,7 +14,13 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchTable: UITableView!
     
     
-    var movie: [Movie] = []
+    var movies: [Movie] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.searchTable.reloadData()
+            }
+        }
+    }
     
     
     
@@ -23,6 +29,9 @@ class SearchViewController: UIViewController {
         searchTable.delegate = self
         searchTable.dataSource = self
         // Do any additional setup after loading the view.
+        Network().getMovies(searchTerm: "star wars") { movies in
+            self.movies = movies
+        }
     }
 
 
@@ -30,11 +39,13 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        let cell = UITableViewCell()
+        cell.textLabel?.text = movies[indexPath.row].original_title
+        return cell
     }
     
     
