@@ -44,8 +44,27 @@ class Network {
         }.resume()
     }
     
-    func getImage(imageUrl: String, completion: @escaping (UIImage?) -> Void) {
-       
+    func getImage(imgSrc: String, completion: @escaping (Result<Data, MyError>) -> Void) {
+        guard let url = URL(string: imgBaseUrl + imgSrc) else {
+            return
+        }
+        let task = URLSession.shared.dataTask(with: url) { data, resp, error in
+            guard error == nil else {
+                completion(.failure(.client))
+                return
+            }
+            guard let httpResponse = resp as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode)
+            else {
+                completion(.failure(.server))
+                return
+            }
+            guard let imageData = data else {
+                return
+            }
+            completion(.success(imageData))
+        }
+        task.resume()
     }
 }
 

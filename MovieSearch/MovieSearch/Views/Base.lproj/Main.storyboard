@@ -56,8 +56,62 @@
             </objects>
             <point key="canvasLocation" x="34.782608695652179" y="97.767857142857139"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="Wkh-KT-NJ1">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pje-LU-ONA" customClass="DetailViewController" customModule="MovieSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fcw-Hv-b9e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0RX-uD-reN">
+                                <rect key="frame" x="0.0" y="105" width="414" height="363.5"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CvT-7e-YUX">
+                                <rect key="frame" x="20" y="478.5" width="374" height="363.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzc-j0-qHc">
+                                <rect key="frame" x="186" y="64" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="x2b-VY-xSI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="x2b-VY-xSI" firstAttribute="trailing" secondItem="0RX-uD-reN" secondAttribute="trailing" id="4ke-C1-oA0"/>
+                            <constraint firstItem="x2b-VY-xSI" firstAttribute="trailing" secondItem="CvT-7e-YUX" secondAttribute="trailing" constant="20" id="Sii-4I-LR8"/>
+                            <constraint firstItem="qzc-j0-qHc" firstAttribute="centerX" secondItem="Fcw-Hv-b9e" secondAttribute="centerX" id="XgT-iS-4m5"/>
+                            <constraint firstItem="qzc-j0-qHc" firstAttribute="top" secondItem="x2b-VY-xSI" secondAttribute="top" constant="20" id="XsL-IA-Zsx"/>
+                            <constraint firstItem="CvT-7e-YUX" firstAttribute="leading" secondItem="x2b-VY-xSI" secondAttribute="leading" constant="20" id="cip-T0-9cE"/>
+                            <constraint firstItem="CvT-7e-YUX" firstAttribute="top" secondItem="0RX-uD-reN" secondAttribute="bottom" constant="10" id="eDH-qS-CAb"/>
+                            <constraint firstItem="0RX-uD-reN" firstAttribute="top" secondItem="qzc-j0-qHc" secondAttribute="bottom" constant="20" id="lql-P5-7KH"/>
+                            <constraint firstItem="0RX-uD-reN" firstAttribute="leading" secondItem="x2b-VY-xSI" secondAttribute="leading" id="smr-2B-Gij"/>
+                            <constraint firstItem="x2b-VY-xSI" firstAttribute="bottom" secondItem="CvT-7e-YUX" secondAttribute="bottom" constant="20" id="w1x-0I-l8f"/>
+                            <constraint firstItem="CvT-7e-YUX" firstAttribute="height" secondItem="0RX-uD-reN" secondAttribute="height" id="ygR-QR-mKf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="posterView" destination="0RX-uD-reN" id="8cM-W5-bRd"/>
+                        <outlet property="synopsisView" destination="CvT-7e-YUX" id="SIb-VG-XHp"/>
+                        <outlet property="titleLabel" destination="qzc-j0-qHc" id="59X-b9-rPO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hFo-3B-UuG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="868" y="98"/>
+        </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

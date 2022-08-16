@@ -55,8 +55,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
-            vc.titleLabel.text = viewModel.getTitle(at: indexPath.row)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.id) as? DetailViewController {
+            vc.imgSrc = viewModel.getImg(at: indexPath.row)
+            print(vc.imgSrc)
+            vc.titleLabel?.text = viewModel.getTitle(at: indexPath.row)
             present(vc, animated: true)
         } else {
             print("error creating ViewController")

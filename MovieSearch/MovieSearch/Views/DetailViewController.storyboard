@@ -11,7 +11,7 @@
         <!--Detail View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="DetailViewController" customModule="MovieSearch" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="DetailViewController" customModule="MovieSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,11 +49,6 @@
                             <constraint firstItem="X55-zI-Yaa" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="qmG-0U-g3B"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="posterView" destination="18O-og-9Pp" id="odW-oL-OIA"/>
-                        <outlet property="synopsisView" destination="1yj-UC-g0s" id="g2y-CT-vM3"/>
-                        <outlet property="titleLabel" destination="X55-zI-Yaa" id="giA-s6-3lC"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

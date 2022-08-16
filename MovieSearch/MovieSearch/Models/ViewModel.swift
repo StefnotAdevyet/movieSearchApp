@@ -26,6 +26,10 @@ class ViewModel {
         "\(movies[row].original_title)"
     }
     
+    func getImg(at row: Int) -> String {
+        movies[row].poster_path ?? ""
+    }
+    
     func fetch(str: String) {
         network?.getMovies(searchTerm: str, completion: { [weak self] result in
             switch result {
