@@ -26,8 +26,8 @@ class ViewModel {
         "\(movies[row].original_title)"
     }
     
-    func fetch() {
-        network?.getMovies(searchTerm: "harry potter", completion: { [weak self] result in
+    func fetch(str: String) {
+        network?.getMovies(searchTerm: str, completion: { [weak self] result in
             switch result {
             case .success(let feed):
                 self?.feed = feed

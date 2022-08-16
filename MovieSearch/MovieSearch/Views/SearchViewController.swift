@@ -10,6 +10,7 @@ import UIKit
 class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func searchBtn(_ sender: UIButton) {
+        search()
     }
     @IBOutlet weak var searchTable: UITableView!
     
@@ -18,23 +19,31 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        search()
+        searchBar.delegate = self
         viewModel.delegate = self
     }
     
-
     func configureTableView() {
         searchTable.delegate = self
         searchTable.dataSource = self
     }
     
     func search() {
-        viewModel.fetch()
+        guard let searchTerm = searchBar.text else {
+            return
+        }
+        viewModel.fetch(str: searchTerm)
     }
-    
-    
 }
 
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        search()
+        searchBar.resignFirstResponder()
+    }
+}
+
+//functions for the tableView
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numRows
