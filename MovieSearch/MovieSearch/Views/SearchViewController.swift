@@ -53,6 +53,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = viewModel.getTitle(at: indexPath.row)
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailViewController.id) as? DetailViewController {
+            vc.titleLabel.text = viewModel.getTitle(at: indexPath.row)
+            present(vc, animated: true)
+        } else {
+            print("error creating ViewController")
+        }
+    }
 }
 
 

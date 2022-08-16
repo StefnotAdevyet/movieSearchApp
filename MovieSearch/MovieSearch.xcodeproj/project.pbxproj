@@ -20,8 +20,8 @@
 		8BFB99E628AAF8FC0096D289 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB99E528AAF8FC0096D289 /* Model.swift */; };
 		8BFB99E828AAF9750096D289 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB99E728AAF9750096D289 /* Network.swift */; };
 		8BFB99EA28AB05FD0096D289 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB99E928AB05FD0096D289 /* ViewModel.swift */; };
-		8BFB99EC28AB27470096D289 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB99EB28AB27470096D289 /* DetailViewController.swift */; };
-		8BFB99EE28AB28400096D289 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB99ED28AB28400096D289 /* DetailViewController.storyboard */; };
+		8BFB99F228AB36E60096D289 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB99EB28AB27470096D289 /* DetailViewController.swift */; };
+		8BFB99F328AB37010096D289 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB99ED28AB28400096D289 /* DetailViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,9 +281,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFB99F328AB37010096D289 /* DetailViewController.storyboard in Resources */,
 				8BFB99BE28AAE6C30096D289 /* LaunchScreen.storyboard in Resources */,
 				8BFB99BB28AAE6C30096D289 /* Assets.xcassets in Resources */,
-				8BFB99EE28AB28400096D289 /* DetailViewController.storyboard in Resources */,
 				8BFB99B628AAE6C20096D289 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFB99F228AB36E60096D289 /* DetailViewController.swift in Sources */,
 				8BFB99E628AAF8FC0096D289 /* Model.swift in Sources */,
 				8BFB99B328AAE6C20096D289 /* SearchViewController.swift in Sources */,
 				8BFB99E828AAF9750096D289 /* Network.swift in Sources */,
@@ -316,7 +317,6 @@
 				8BFB99B928AAE6C20096D289 /* MovieSearch.xcdatamodeld in Sources */,
 				8BFB99B128AAE6C20096D289 /* SceneDelegate.swift in Sources */,
 				8BFB99EA28AB05FD0096D289 /* ViewModel.swift in Sources */,
-				8BFB99EC28AB27470096D289 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
