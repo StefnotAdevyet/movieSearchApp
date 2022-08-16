@@ -13,41 +13,53 @@ class SearchViewController: UIViewController {
     }
     @IBOutlet weak var searchTable: UITableView!
     
-    
-    var movies: [Movie] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.searchTable.reloadData()
-            }
-        }
-    }
-    
-    
+    private let viewModel = ViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+        search()
+        viewModel.delegate = self
+    }
+    
+
+    func configureTableView() {
         searchTable.delegate = self
         searchTable.dataSource = self
-        // Do any additional setup after loading the view.
-        Network().getMovies(searchTerm: "star wars") { movies in
-            self.movies = movies
-        }
     }
-
-
+    
+    func search() {
+        viewModel.fetch()
+    }
+    
+    
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        viewModel.numRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = movies[indexPath.row].original_title
+        cell.textLabel?.text = viewModel.getTitle(at: indexPath.row)
         return cell
     }
+}
+
+
+//functions to update table and rows
+extension SearchViewController: UpdateTable {
+    func reloadTable() {
+        DispatchQueue.main.async {
+            self.searchTable.reloadData()
+        }
+    }
     
-    
+    func reloadTable(at: Int) {
+        DispatchQueue.main.async {
+            self.searchTable.reloadRows(at: [IndexPath(row: at, section: 0)], with: .automatic)
+        }
+    }
 }
 

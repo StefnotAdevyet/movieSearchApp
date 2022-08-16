@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieResult: Codable {
+struct DataFeed: Codable {
     let page: Int
     let results: [Movie]
     let total_pages: Int
