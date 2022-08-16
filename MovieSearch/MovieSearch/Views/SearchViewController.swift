@@ -48,7 +48,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numRows
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.text = viewModel.getTitle(at: indexPath.row)
@@ -64,7 +63,6 @@ extension SearchViewController: UpdateTable {
             self.searchTable.reloadData()
         }
     }
-    
     func reloadTable(at: Int) {
         DispatchQueue.main.async {
             self.searchTable.reloadRows(at: [IndexPath(row: at, section: 0)], with: .automatic)
