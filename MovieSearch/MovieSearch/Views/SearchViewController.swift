@@ -55,7 +55,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailViewController.id) as? DetailViewController {
+        if let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
             vc.titleLabel.text = viewModel.getTitle(at: indexPath.row)
             present(vc, animated: true)
         } else {

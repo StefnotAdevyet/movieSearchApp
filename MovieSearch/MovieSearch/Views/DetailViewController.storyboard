@@ -50,9 +50,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="posterView" destination="18O-og-9Pp" id="2Jw-3d-31g"/>
-                        <outlet property="synopsisView" destination="1yj-UC-g0s" id="CAN-jA-WR9"/>
-                        <outlet property="titleLabel" destination="X55-zI-Yaa" id="TzP-yE-aPS"/>
+                        <outlet property="posterView" destination="18O-og-9Pp" id="odW-oL-OIA"/>
+                        <outlet property="synopsisView" destination="1yj-UC-g0s" id="g2y-CT-vM3"/>
+                        <outlet property="titleLabel" destination="X55-zI-Yaa" id="giA-s6-3lC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
