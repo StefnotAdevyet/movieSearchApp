@@ -57,7 +57,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.id) as? DetailViewController {
             vc.imgSrc = viewModel.getImg(at: indexPath.row)
-            print(vc.imgSrc)
             vc.titleLabel?.text = viewModel.getTitle(at: indexPath.row)
             present(vc, animated: true)
         } else {
