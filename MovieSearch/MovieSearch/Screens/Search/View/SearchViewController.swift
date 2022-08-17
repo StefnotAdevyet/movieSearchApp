@@ -23,9 +23,15 @@ class SearchViewController: UIViewController {
         viewModel.delegate = self
     }
     
+    
     func configureTableView() {
         searchTable.delegate = self
         searchTable.dataSource = self
+        searchTable.register(SearchTableCell.nib, forCellReuseIdentifier: SearchTableCell.id)
+    }
+    
+    func setViewModel() {
+        
     }
     
     func search() {
@@ -49,15 +55,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         viewModel.numRows
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = viewModel.getTitle(at: indexPath.row)
+        let cell = searchTable.dequeueReusableCell(withIdentifier: SearchTableCell.id, for: indexPath)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.id) as? DetailViewController {
-            vc.imgSrc = viewModel.getImg(at: indexPath.row)
-            vc.titleLabel?.text = viewModel.getTitle(at: indexPath.row)
+            vc.configure(title: viewModel.getTitle(at: indexPath.row))  
             present(vc, animated: true)
         } else {
             print("error creating ViewController")

@@ -22,6 +22,8 @@ class SearchViewModel {
     
     weak var delegate: UpdateTable?
     
+    
+    
     func getTitle(at row: Int) -> String {
         "\(movies[row].original_title)"
     }
