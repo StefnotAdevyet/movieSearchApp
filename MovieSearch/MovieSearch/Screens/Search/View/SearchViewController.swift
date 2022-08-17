@@ -50,17 +50,24 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 //functions for the tableView
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numRows
+        0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchTable.dequeueReusableCell(withIdentifier: SearchTableCell.id, for: indexPath)
         return cell
     }
+    
+}
+
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        130
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.id) as? DetailViewController {
-            vc.configure(title: viewModel.getTitle(at: indexPath.row))  
+            vc.configure(title: viewModel.getTitle(at: indexPath.row))
             present(vc, animated: true)
         } else {
             print("error creating ViewController")

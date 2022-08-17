@@ -78,9 +78,4 @@ extension Network {
     }
 }
 
-enum MyError: String, Error {
-    case client
-    case server
-    case reachability
-    case parsing
-}
+
