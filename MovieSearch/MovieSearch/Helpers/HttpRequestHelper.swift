@@ -16,12 +16,7 @@ enum HTTPHeaderFields {
     case none
 }
 
-enum MyError: String, Error {
-    case client
-    case server
-    case reachability
-    case parsing
-}
+
 
 
 class HttpRequestHelper {
@@ -56,7 +51,7 @@ class HttpRequestHelper {
         
         let config = URLSessionConfiguration.ephemeral
         let session = URLSession(configuration: config)
-        
+        //run the data task on the session check for errors, unwrap the data, decode the data if necessary, unwrap the resopnse, run completion handler with the data
         session.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: Problem calling GET")
@@ -70,7 +65,7 @@ class HttpRequestHelper {
                 completion(false, nil)
                 return
             }
-            
+
             guard let response = response as? HTTPURLResponse, (200..<300) ~= response.statusCode else {
                 print("Error: HTTP request failed")
                 completion(false, nil)
@@ -79,6 +74,5 @@ class HttpRequestHelper {
             completion(true, data)
         }.resume()
     }
-    
 }
 
