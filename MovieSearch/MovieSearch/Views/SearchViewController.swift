@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     }
     @IBOutlet weak var searchTable: UITableView!
     
-    private let viewModel = ViewModel()
+    private let viewModel = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

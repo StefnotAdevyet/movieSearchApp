@@ -10,7 +10,7 @@ protocol UpdateTable: AnyObject {
     func reloadTable(at: Int)
 }
 
-class ViewModel {
+class SearchViewModel {
     private var network: Network? = Network()
     private var feed: DataFeed?
     private var movies: [Movie] {
