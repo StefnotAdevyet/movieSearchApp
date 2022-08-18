@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias Movies = [Movie]
+
 struct DataFeed: Codable {
     let page: Int
     let results: [Movie]

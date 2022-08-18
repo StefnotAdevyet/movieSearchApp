@@ -14,25 +14,41 @@ class SearchViewController: UIViewController {
     }
     @IBOutlet weak var searchTable: UITableView!
     
-    private let viewModel = ViewModel()
+    lazy var viewModel = {
+        SearchViewModel()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         searchBar.delegate = self
-        viewModel.delegate = self
+        initViewModel()
     }
-    
+    func initViewModel() {
+        viewModel.getMovies()
+        viewModel.reloadTable = { [weak self] in
+            DispatchQueue.main.async {
+                self?.searchTable.reloadData()
+            }
+        }
+    }
     func configureTableView() {
         searchTable.delegate = self
         searchTable.dataSource = self
+        searchTable.register(SearchTableCell.nib, forCellReuseIdentifier: SearchTableCell.id)
     }
+    
+    
+    func setViewModel() {
+        //I think I still need this?
+    }
+    
     
     func search() {
         guard let searchTerm = searchBar.text else {
             return
         }
-        viewModel.fetch(str: searchTerm)
+        print(searchTerm)
     }
 }
 
@@ -44,27 +60,28 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 //functions for the tableView
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numRows
+        viewModel.searchCellViewModels.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = viewModel.getTitle(at: indexPath.row)
-        return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.id) as? DetailViewController {
-            vc.imgSrc = viewModel.getImg(at: indexPath.row)
-            vc.titleLabel?.text = viewModel.getTitle(at: indexPath.row)
-            present(vc, animated: true)
-        } else {
-            print("error creating ViewController")
+        guard let cell = searchTable.dequeueReusableCell(withIdentifier: SearchTableCell.id, for: indexPath) as? SearchTableCell else {
+            fatalError("xib does not exist")
         }
+        let cellVM = viewModel.getCellViewModel(at: indexPath)
+        cell.searchCellViewModel = cellVM
+        return cell
     }
 }
 
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        130
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //navigate to a detailView of the specified row
+    }
+}
 
 //functions to update table and rows
 extension SearchViewController: UpdateTable {
