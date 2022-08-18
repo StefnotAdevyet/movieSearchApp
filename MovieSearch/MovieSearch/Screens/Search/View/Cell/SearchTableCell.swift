@@ -14,6 +14,12 @@ class SearchTableCell: UITableViewCell {
     class var id: String { String(describing: self) }
     class var nib: UINib { UINib(nibName: id, bundle: nil) }
     
+    var searchCellViewModel: SearchCellViewModel? {
+        didSet {
+            titleLabel.text = searchCellViewModel?.name
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,7 +27,6 @@ class SearchTableCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
@@ -29,5 +34,4 @@ class SearchTableCell: UITableViewCell {
         super.prepareForReuse()
         titleLabel.text = nil
     }
-    
 }

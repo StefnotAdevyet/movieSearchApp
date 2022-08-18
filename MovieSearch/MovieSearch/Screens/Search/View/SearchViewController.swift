@@ -14,31 +14,41 @@ class SearchViewController: UIViewController {
     }
     @IBOutlet weak var searchTable: UITableView!
     
-    private let viewModel = SearchViewModel()
+    lazy var viewModel = {
+        SearchViewModel()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         searchBar.delegate = self
-        viewModel.delegate = self
+        initViewModel()
     }
-    
-    
+    func initViewModel() {
+        viewModel.getMovies()
+        viewModel.reloadTable = { [weak self] in
+            DispatchQueue.main.async {
+                self?.searchTable.reloadData()
+            }
+        }
+    }
     func configureTableView() {
         searchTable.delegate = self
         searchTable.dataSource = self
         searchTable.register(SearchTableCell.nib, forCellReuseIdentifier: SearchTableCell.id)
     }
     
+    
     func setViewModel() {
-        
+        //I think I still need this?
     }
+    
     
     func search() {
         guard let searchTerm = searchBar.text else {
             return
         }
-        viewModel.fetch(str: searchTerm)
+        print(searchTerm)
     }
 }
 
@@ -52,13 +62,16 @@ extension SearchViewController: UISearchBarDelegate {
 //functions for the tableView
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        viewModel.searchCellViewModels.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = searchTable.dequeueReusableCell(withIdentifier: SearchTableCell.id, for: indexPath)
+        guard let cell = searchTable.dequeueReusableCell(withIdentifier: SearchTableCell.id, for: indexPath) as? SearchTableCell else {
+            fatalError("xib does not exist")
+        }
+        let cellVM = viewModel.getCellViewModel(at: indexPath)
+        cell.searchCellViewModel = cellVM
         return cell
     }
-    
 }
 
 extension SearchViewController: UITableViewDelegate {
@@ -66,15 +79,9 @@ extension SearchViewController: UITableViewDelegate {
         130
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.id) as? DetailViewController {
-            vc.configure(title: viewModel.getTitle(at: indexPath.row))
-            present(vc, animated: true)
-        } else {
-            print("error creating ViewController")
-        }
+        //navigate to a detailView of the specified row
     }
 }
-
 
 //functions to update table and rows
 extension SearchViewController: UpdateTable {

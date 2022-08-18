@@ -5,42 +5,51 @@
 //  Created by developer on 8/15/22.
 //
 
+import Foundation
+
 protocol UpdateTable: AnyObject {
     func reloadTable()
     func reloadTable(at: Int)
 }
 
-class SearchViewModel {
-    private var network: Network? = Network()
-    private var feed: DataFeed?
-    private var movies: [Movie] {
-        feed?.results ?? []
-    }
-    var numRows: Int {
-        feed?.results.count ?? 0
+class SearchViewModel: NSObject {
+    private var movieService: MovieServiceProtocol
+    
+    init(movieService: MovieServiceProtocol = Network()) {
+        self.movieService = movieService
     }
     
-    weak var delegate: UpdateTable?
-    
-    
-    
-    func getTitle(at row: Int) -> String {
-        "\(movies[row].original_title)"
-    }
-    
-    func getImg(at row: Int) -> String {
-        movies[row].poster_path ?? ""
-    }
-    
-    func fetch(str: String) {
-        network?.getMovies(searchTerm: str, completion: { [weak self] result in
-            switch result {
-            case .success(let feed):
-                self?.feed = feed
-                self?.delegate?.reloadTable()
-            case .failure(let err):
-                print(err.rawValue)
+    func getMovies() {
+        movieService.getMovies { success, results, error in
+            if success, let movies = results?.results {
+                self.fetchData(movies: movies)
+            } else {
+                print(error!)
             }
-        })
+        }
+    }
+    
+    var reloadTable: (() -> Void)?
+    var movies = Movies()
+    var searchCellViewModels = [SearchCellViewModel]() {
+        didSet {
+            reloadTable?()
+        }
+    }
+    
+    func fetchData(movies: Movies) {
+        self.movies = movies
+        var vms = [SearchCellViewModel]()
+        for movie in movies {
+            vms.append(configureCell(movie: movie))
+        }
+        searchCellViewModels = vms
+    }
+    func configureCell(movie: Movie) -> SearchCellViewModel {
+        let title = movie.original_title
+        return SearchCellViewModel(name: title)
+    }
+    func getCellViewModel(at indexPath: IndexPath) -> SearchCellViewModel {
+        searchCellViewModels[indexPath.row]
     }
 }

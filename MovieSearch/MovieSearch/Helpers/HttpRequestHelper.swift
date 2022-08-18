@@ -4,9 +4,6 @@
 //
 //  Created by developer on 8/17/22.
 //
-
-//In this example, we have a file with the name HttpRequestHelper. Inside this class, we have a GET method that takes as parameters a URL, the request parameters (If they exist), and an HTTP Header and returns the results with the escaping closure complete.
-
 import Foundation
 
 
@@ -15,9 +12,6 @@ enum HTTPHeaderFields {
     case application_x_www_form_urlencoded
     case none
 }
-
-
-
 
 class HttpRequestHelper {
     func GET(url: String, params: [String: String], httpHeader: HTTPHeaderFields, completion: @escaping (Bool, Data?) -> ()) {
@@ -30,12 +24,11 @@ class HttpRequestHelper {
         components.queryItems = params.map { key, value in
             URLQueryItem(name: key, value: value)
         }
-        
-        guard let url = components.url else {
+        //need to figure out how to utilize url components here instead of the hardcoded url
+        guard let url = URL(string: url) else {
             print("Error: Cannot create url")
             return
         }
-        
         //create url request from url and set request method as GET
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -59,13 +52,11 @@ class HttpRequestHelper {
                 completion(false, nil)
                 return
             }
-            
             guard let data = data else {
                 print("Error: did not receive data")
                 completion(false, nil)
                 return
             }
-
             guard let response = response as? HTTPURLResponse, (200..<300) ~= response.statusCode else {
                 print("Error: HTTP request failed")
                 completion(false, nil)

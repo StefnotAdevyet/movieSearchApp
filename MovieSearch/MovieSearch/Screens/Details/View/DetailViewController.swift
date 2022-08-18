@@ -15,15 +15,13 @@ class DetailViewController: UIViewController {
     
     private let viewModel = DetailViewModel()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
     func configure(title: String) {
-        //
+        //configure the view
     }
     
     
