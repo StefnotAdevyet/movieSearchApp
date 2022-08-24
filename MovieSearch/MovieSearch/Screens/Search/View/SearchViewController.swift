@@ -25,7 +25,6 @@ class SearchViewController: UIViewController {
         initViewModel()
     }
     func initViewModel() {
-        viewModel.getMovies()
         viewModel.reloadTable = { [weak self] in
             DispatchQueue.main.async {
                 self?.searchTable.reloadData()
@@ -48,7 +47,7 @@ class SearchViewController: UIViewController {
         guard let searchTerm = searchBar.text else {
             return
         }
-        print(searchTerm)
+        viewModel.getMovies(movie: searchTerm)
     }
 }
 

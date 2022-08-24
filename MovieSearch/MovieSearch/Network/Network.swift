@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol MovieServiceProtocol {
-    func getMovies(completion: @escaping (_ success: Bool, _ results: DataFeed?, _ error: String?) -> ())
+    func getMovies(movie: String, completion: @escaping (_ success: Bool, _ results: DataFeed?, _ error: String?) -> ())
 }
 
 enum MyError: String, Error {
@@ -21,8 +21,15 @@ enum MyError: String, Error {
 }
 
 class Network: MovieServiceProtocol {
-    func getMovies(completion: @escaping (Bool, DataFeed?, String?) -> ()) {
-        HttpRequestHelper().GET(url: "https://api.themoviedb.org/3/search/movie?api_key=b1a0a71e617a699ee81d319a065ed9ca&language=en-US&query=avengers&page=1&include_adult=false", params: ["":""], httpHeader: .application_json) { success, data in
+    func getMovies(movie: String, completion: @escaping (Bool, DataFeed?, String?) -> ()) {
+        let params: [URLQueryItem] = [
+           URLQueryItem(name: "api_key", value: "b1a0a71e617a699ee81d319a065ed9ca"),
+           URLQueryItem(name: "language", value: "en-US"),
+           URLQueryItem(name: "query", value: formatSearchString(string: movie)),
+           URLQueryItem(name: "page", value: "1"),
+           URLQueryItem(name: "include_adult", value: "false")
+        ]
+        HttpRequestHelper().GET(url: "", params: params, httpHeader: .application_json) { success, data in
             if success {
                 do {
                     let model = try JSONDecoder().decode(DataFeed.self, from: data!)
@@ -46,6 +53,9 @@ extension Network {
         return words[0]
     }
 }
+
+
+
 
 
 //let apiKey: String = "b1a0a71e617a699ee81d319a065ed9ca"

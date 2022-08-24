@@ -102,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B8E082A28B69D3100CEB1F4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8B9BEEAE28AC69510003EE71 /* DetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8B9BEEB028AC7E9E0003EE71 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +123,7 @@
 		8B9BEEB128AC7EBF0003EE71 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				8B8E082A28B69D3100CEB1F4 /* ViewModel */,
 				8B9BEEB628AC80660003EE71 /* View */,
 			);
 			path = Details;
@@ -156,14 +165,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		8B9BEEC228AD5DB20003EE71 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				8B9BEEAE28AC69510003EE71 /* DetailViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		8B9BEEC328AD5E9C0003EE71 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,7 +197,6 @@
 		8BFB99AD28AAE6C20096D289 /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
-				8B9BEEC228AD5DB20003EE71 /* ViewModels */,
 				8B9BEEBF28ACAB660003EE71 /* Helpers */,
 				8BFB99E428AAEDAD0096D289 /* Network */,
 				8BFB99E128AAE8FB0096D289 /* Screens */,

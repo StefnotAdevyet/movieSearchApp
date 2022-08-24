@@ -14,21 +14,34 @@ enum HTTPHeaderFields {
 }
 
 class HttpRequestHelper {
-    func GET(url: String, params: [String: String], httpHeader: HTTPHeaderFields, completion: @escaping (Bool, Data?) -> ()) {
+    func GET(url: String, params: [URLQueryItem], httpHeader: HTTPHeaderFields, completion: @escaping (Bool, Data?) -> ()) {
         //create URLComponent type variable from url string?
-        guard var components = URLComponents(string: url) else {
-            print("Error: Cannot create URLComponents")
-            return
+//        guard var components = URLComponents(string: url) else {
+//            print("Error: Cannot create URLComponents")
+//            return
+//        }
+//        //add the url query parameters to the URLComponent variable
+//        components.queryItems = params.map { key, value in
+//            URLQueryItem(name: key, value: value)
+//        }
+//        //need to figure out how to utilize url components here instead of the hardcoded url
+//        guard let url = URL(string: url) else {
+//            print("Error: Cannot create url")
+//            return
+//        }
+        
+        var url: URL {
+            var components = URLComponents()
+            components.scheme = "https"
+            components.host = "api.themoviedb.org"
+            components.path = "/3/search/movie"
+            components.queryItems = params
+            guard let url = components.url else {
+                preconditionFailure("Invalid URL components: \(components)")
+            }
+            return url
         }
-        //add the url query parameters to the URLComponent variable
-        components.queryItems = params.map { key, value in
-            URLQueryItem(name: key, value: value)
-        }
-        //need to figure out how to utilize url components here instead of the hardcoded url
-        guard let url = URL(string: url) else {
-            print("Error: Cannot create url")
-            return
-        }
+        
         //create url request from url and set request method as GET
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

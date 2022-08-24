@@ -19,8 +19,8 @@ class SearchViewModel: NSObject {
         self.movieService = movieService
     }
     
-    func getMovies() {
-        movieService.getMovies { success, results, error in
+    func getMovies(movie: String) {
+        movieService.getMovies(movie: movie) { success, results, error in
             if success, let movies = results?.results {
                 self.fetchData(movies: movies)
             } else {
