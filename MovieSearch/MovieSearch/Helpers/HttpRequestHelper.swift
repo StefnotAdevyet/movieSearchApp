@@ -42,6 +42,8 @@ class HttpRequestHelper {
             return url
         }
         
+        print(url)
+        
         //create url request from url and set request method as GET
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

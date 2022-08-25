@@ -25,7 +25,7 @@ class Network: MovieServiceProtocol {
         let params: [URLQueryItem] = [
            URLQueryItem(name: "api_key", value: "b1a0a71e617a699ee81d319a065ed9ca"),
            URLQueryItem(name: "language", value: "en-US"),
-           URLQueryItem(name: "query", value: formatSearchString(string: movie)),
+           URLQueryItem(name: "query", value: movie),
            URLQueryItem(name: "page", value: "1"),
            URLQueryItem(name: "include_adult", value: "false")
         ]
@@ -43,23 +43,3 @@ class Network: MovieServiceProtocol {
         }
     }
 }
-
-extension Network {
-    func formatSearchString(string: String) -> String {
-        let words: [String] = string.components(separatedBy: " ")
-        if words.count > 1 {
-            return words.joined(separator: "%20")
-        }
-        return words[0]
-    }
-}
-
-
-
-
-
-//let apiKey: String = "b1a0a71e617a699ee81d319a065ed9ca"
-//let baseUrl: String = ""
-//let imgBaseUrl: String = "https://image.tmdb.org/t/p/w300/"
-//
-//let urlStr = "https://api.themoviedb.org/3/search/movie?api_key=\(self.apiKey)&language=en-US&query=\(formatSearchString(string: searchTerm))&page=1&include_adult=false"
