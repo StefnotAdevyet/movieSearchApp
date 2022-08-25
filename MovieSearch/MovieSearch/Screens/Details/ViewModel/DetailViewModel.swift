@@ -19,6 +19,7 @@ class DetailViewModel {
     func getDescription() -> String {
         movie.overview
     }
+
     
 //    network.getImage(imgSrc: imgSrc) { result in
 //        switch result {
